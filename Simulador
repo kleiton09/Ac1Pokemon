@@ -1,0 +1,129 @@
+class Main {
+  public static void main(String[] args) {
+        int vidaMeuPokemon;
+        int vidaOutroPokemon;
+        int vidaMeuPokemon2;
+        int vidaOutroPokemon2;
+        
+        //Instanciar um novo objeto
+        Pokemon meuPokemon = new Pokemon("Altaria", "Voador", 33);
+        Pokemon outroPokemon = new Pokemon("Blastoise", "Aquatico", 40);
+
+        Pokemon meuPokemon2 = new Pokemon("Charizard", "Chama",35);
+        Pokemon outroPokemon2 = new Pokemon("Venosaur", "Terra", 37);
+
+                           
+        meuPokemon.imprimiPokemon();
+        outroPokemon.imprimiPokemon();
+        
+        meuPokemon2.imprimiPokemon();
+        outroPokemon2.imprimiPokemon();
+
+
+        
+        vidaMeuPokemon = meuPokemon.getVida();
+        vidaOutroPokemon = outroPokemon.getVida();
+
+        vidaMeuPokemon2 = meuPokemon2.getVida();
+        vidaOutroPokemon2 = outroPokemon2.getVida();
+        
+        if(vidaMeuPokemon > vidaOutroPokemon){
+            System.out.println("Eu ganhei");
+        } else{
+            System.out.println("Eu perdi");
+        }
+  }
+}
+
+
+
+
+public class Poke {
+    
+    //Atributos genéricos de um pokémon
+    //Encapsulamento
+    private String nome;
+    private String tipo;
+    private int level;
+    private int vida = 290;
+    private int ataque;
+    private int defesa;
+    
+    //Construtor da Classe
+    public Poke(String nome, String tipo, int level){
+        this.nome = nome;
+        this.tipo = tipo;
+        this.level = level;
+                
+        calculaAtributos();
+        calculaBonus();
+    }
+    
+    //Get
+    public int getVida(){
+        return this.vida;
+    }
+    
+    public int getAtaque(){
+        return this.ataque;
+    }
+    
+    public int getDefesa(){
+        return this.defesa;
+    }
+    
+    //Set
+    public void setNome(String nome){
+        this.nome = nome;
+    }
+    
+    //Métodos que podem ser usados por um objeto do tipo pokemon    
+    private void calculaAtributos(){
+        switch(tipo){
+            case "Chama":
+                vida = vida - 20;
+                ataque = 50;
+                defesa = 20;
+            break;
+            
+            case "Aquatico":
+                vida = vida - 5;
+                ataque = 20;
+                defesa = 35;
+            break;
+            
+            case "Terra":
+                vida = vida + 20;
+                ataque = 15;
+                defesa = 40;
+            break;
+            
+            case "Voador":
+                vida = vida + 25;
+                ataque = 40;
+                defesa = 20;
+            break;
+        }
+    }
+    
+    private void calculaBonus(){
+        
+        vida = vida + (level / 2);
+        ataque = ataque + (level / 3);
+        defesa = defesa + (level / 4);
+        
+    }   
+       
+    public void imprimiPokemon(){
+        
+        System.out.println(
+                "Nome: " + nome + " | " + 
+                    "Tipo: " + tipo + " | " + 
+                        "Level: " + level + " | " + 
+                            "Vida: " + vida + " | " +
+                                "Ataque: " + ataque + " | " +
+                                    "Defesa: " + defesa + "\n");
+        
+    }   
+    
+}
